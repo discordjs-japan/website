@@ -3,7 +3,8 @@ const GITHUB_ORG = 'https://raw.githubusercontent.com/discordjs/';
 self.addEventListener('fetch', event => {
   const req = event.request;
   const url = new URL(req.url);
-  event.respondWith(url.origin === location.origin ? cacheFirst(req) : networkFirst(req));
+  // Original: event.respondWith(url.origin === location.origin ? cacheFirst(req) : networkFirst(req));
+  event.respondWith(url.origin === 'https://api.github.com' ? cacheFirst(req) : networkFirst(req));
 });
 
 async function fetchAndCache(req, cacheName) {
