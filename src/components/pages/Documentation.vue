@@ -1,7 +1,7 @@
 <template>
   <div id="docs">
     <docs-navbar :sources="sources" :source="source" />
-    <router-view :source="source" :tag="tag" :darkMode="darkMode" @toggleDarkMode="toggleDarkMode" @setRepository="setRepository" />
+    <router-view :lang="lang" :source="source" :tag="tag" :darkMode="darkMode" @toggleDarkMode="toggleDarkMode" @setRepository="setRepository" />
   </div>
 </template>
 
@@ -21,6 +21,7 @@ export default {
 
   data() {
     return {
+      lang: null,
       sources: {
         [MainSource.id]: MainSource,
         [CollectionSource.id]: CollectionSource,
@@ -42,7 +43,17 @@ export default {
       this.source.recentTag = tag;
     },
 
+    setLang(lang) {
+      this.lang = lang;
+    },
+
     handleRoute(route) {
+      // Set the lang
+      if (route.query.lang) {
+        console.log('Set lang', route.query.lang);
+        this.setLang(route.query.lang);
+      }
+
       // Set the source, or redirect to a default route
       if (route.params.source && this.sources[route.params.source]) {
         this.setSource(route.params.source);
