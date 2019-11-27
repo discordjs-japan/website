@@ -2,6 +2,7 @@ import Vue from 'vue';
 import marked from 'marked';
 
 import App from './App';
+import i18n from './i18n';
 import router from './router';
 import { hljs } from './util';
 import ContainerComponent from './components/Container.vue';
@@ -30,6 +31,7 @@ Vue.filter('marked', text => {
 });
 
 new Vue({
+  i18n,
   router,
   render: h => h(App),
 }).$mount('#app');

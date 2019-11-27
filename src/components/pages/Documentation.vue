@@ -50,7 +50,6 @@ export default {
     handleRoute(route) {
       // Set the lang
       if (route.query.lang) {
-        console.log('Set lang', route.query.lang);
         this.setLang(route.query.lang);
       }
 

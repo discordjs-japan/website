@@ -15,6 +15,7 @@
 
 <script>
 import { SHITS } from '../../util';
+import { loadLanguageAsync } from '../../i18n';
 
 export default {
   name: 'docs-loader',
@@ -23,7 +24,6 @@ export default {
   data() {
     return {
       docs: null,
-      messages: null,
       error: null,
       loadingTag: null,
     };
@@ -120,19 +120,12 @@ export default {
       });
     },
 
-    async loadMessages() {
+    loadLang() {
       // Skip loading when default language
       if (!this.lang) return;
       const repo = this.source.repo.split('/')[1];
-      console.log('Loading messages', this.lang);
-      const json = res => {
-        if (!res.ok) throw new Error('Failed to fetch lang data file from GitHub');
-        return res.json();
-      };
-      const endpoint = 'https://raw.githubusercontent.com/discordjs-japan/i18n';
-      const url = `/master/content/${this.lang}/docs/${repo}/${this.tag}.json`;
-      const messages = await fetch(endpoint + url).then(json);
-      this.messages = messages;
+      console.log('Loading lang', this.lang, repo, this.tag);
+      loadLanguageAsync(this.lang, repo, this.tag);
     },
 
     scroll(fromRoute) {
@@ -194,7 +187,7 @@ export default {
     },
 
     lang() {
-      this.loadMessages();
+      this.loadLang();
     },
 
     $route(to, from) {
@@ -204,7 +197,7 @@ export default {
 
   created() {
     this.loadDocs();
-    this.loadMessages();
+    this.loadLang();
   },
 
   mounted() {
