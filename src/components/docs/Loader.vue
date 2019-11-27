@@ -121,8 +121,6 @@ export default {
     },
 
     loadLang() {
-      // Skip loading when default language
-      if (!this.lang) return;
       const repo = this.source.repo.split('/')[1];
       console.log('Loading lang', this.lang, repo, this.tag);
       loadLanguageAsync(this.lang, repo, this.tag);

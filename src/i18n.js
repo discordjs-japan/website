@@ -22,10 +22,8 @@ const json = res => {
 };
 
 export async function loadLanguageAsync(lang, repo, tag) {
-  // If the same language
-  if (i18n.locale === lang) {
-    return setI18nLanguage(lang);
-  }
+  // Unset lang
+  if (!lang) return setI18nLanguage(null);
 
   // If the language was already loaded
   if (loadedLanguages.includes(lang)) {

@@ -49,7 +49,7 @@ export default {
 
     handleRoute(route) {
       // Set the lang
-      if (route.query.lang) {
+      if (this.lang !== route.query.lang) {
         this.setLang(route.query.lang);
       }
 
