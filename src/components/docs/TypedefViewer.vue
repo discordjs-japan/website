@@ -59,12 +59,12 @@ export default {
 
   computed: {
     description() {
-      return Vue.filter('marked')(convertLinks(this.typedef.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(this.typedef.description), this.docs, this.$router, this.$route));
     },
 
     returnsDescription() {
       const returns = this.typedef.returns;
-      if (returns) return Vue.filter('marked')(convertLinks(returns.description, this.docs, this.$router, this.$route));
+      if (returns) return Vue.filter('marked')(convertLinks(this.$t(returns.description), this.docs, this.$router, this.$route));
       return '';
     },
   },

@@ -43,7 +43,7 @@ export default {
 
   computed: {
     description() {
-      return Vue.filter('marked')(convertLinks(this.prop.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(this.prop.description), this.docs, this.$router, this.$route));
     },
 
     scrollTo() {

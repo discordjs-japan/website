@@ -82,11 +82,11 @@ export default {
     },
 
     description() {
-      return Vue.filter('marked')(convertLinks(this.method.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(this.method.description), this.docs, this.$router, this.$route));
     },
 
     returnDescription() {
-      return Vue.filter('marked')(convertLinks(this.method.returns.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(this.method.returns.description), this.docs, this.$router, this.$route));
     },
 
     emits() {

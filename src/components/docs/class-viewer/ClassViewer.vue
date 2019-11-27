@@ -101,7 +101,7 @@ export default {
     },
 
     description() {
-      return Vue.filter('marked')(convertLinks(this.clarse.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(this.clarse.description), this.docs, this.$router, this.$route));
     },
   },
 

@@ -50,7 +50,7 @@ export default {
     typeKey,
 
     paramDescription(param) {
-      return Vue.filter('marked')(convertLinks(param.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(param.description), this.docs, this.$router, this.$route));
     },
 
     paramDefault(param) {

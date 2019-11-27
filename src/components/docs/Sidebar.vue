@@ -12,11 +12,11 @@
 
       <ul>
         <li v-for="(category, categoryID) in docs.custom" :key="categoryID">
-          {{ category.name }}
+          {{ $t(category.name) }}
           <ul>
             <li v-for="(file, fileID) in category.files" :key="fileID">
               <router-link :to="{ name: 'docs-file', params: { category: categoryID, file: fileID } }">
-                {{ file.name }}
+                {{ $t(file.name) }}
               </router-link>
             </li>
           </ul>

@@ -31,7 +31,7 @@ export default {
 
   computed: {
     description() {
-      return Vue.filter('marked')(convertLinks(this.event.description, this.docs, this.$router, this.$route));
+      return Vue.filter('marked')(convertLinks(this.$t(this.event.description), this.docs, this.$router, this.$route));
     },
   },
 };
