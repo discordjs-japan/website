@@ -12,7 +12,7 @@ import DocsSearch from './components/docs/Search.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     { path: '/', name: 'home', component: HomePage },
     { path: '/docs', name: 'docs', component: DocumentationPage, children: [
@@ -65,3 +65,14 @@ export default new Router({
     { path: '*', component: UnknownRoutePage },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  // Hold lang query
+  if (from.query.lang && !to.query.lang && to.path !== from.path) {
+    const query = { ...to.query, lang: from.query.lang };
+    return next({ ...to, query });
+  }
+  return next();
+});
+
+export default router;
